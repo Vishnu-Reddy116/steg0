@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steganography - Hide Data in Images</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Secure Data Hiding in Images</h1>
+        <form action="/encode" method="post" enctype="multipart/form-data">
+            <h2>Encode Message</h2>
+            <label for="image">Upload Image:</label>
+            <input type="file" name="image" id="image" accept="image/*" required>
+            <label for="message">Message to Hide:</label>
+            <textarea name="message" id="message" rows="4" required></textarea>
+            <button type="submit">Encode Message</button>
+        </form>
+
+        <form action="/decode" method="post" enctype="multipart/form-data">
+            <h2>Decode Message</h2>
+            <label for="image">Upload Image:</label>
+            <input type="file" name="image" id="image" accept="image/*" required>
+            <button type="submit">Decode Message</button>
+        </form>
+
+        {% if decoded_message %}
+        <div class="decoded-message">
+            <h3>Decoded Message:</h3>
+            <p>{{ decoded_message }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
